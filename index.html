@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matt Robinson Portfolio - Web Developer & Designer</title>
+
+    <!-- Load Inter Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap">
+
+    <!-- Tailwind CSS and Custom Configuration -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        // Keeping primary indigo, but using lighter shades for contrast on dark background
+                        'primary-indigo': '#4f46e5',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Typed.js -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+    <style>
+        /* Ensure Inter is used and background is clean */
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Scroll Reveal Transition CSS */
+        .reveal {
+            /* Initial state classes matching the React JSX (opacity-0 translate-y-6 duration-700) */
+            opacity: 0;
+            transform: translateY(1.5rem);
+            /* 1.5rem = 24px, approximating translate-y-6 */
+            transition: all 0.7s ease-out;
+        }
+
+        .reveal.visible {
+            /* Final state classes */
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Simple focus state for accessibility */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid #6366f1;
+            /* Indigo-500 */
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<!-- DARK MODE: Background changed to dark gray, text defaults to white -->
+
+<body class="bg-gray-900 text-white antialiased">
+
+    <div id="app" class="min-h-screen font-sans">
+
+        <!-- HEADER -->
+        <!-- Background changed to a lighter dark gray for depth, shadow darkened -->
+        <header class="bg-gray-800 shadow-xl sticky top-0 z-10">
+            <div class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <!-- Indigo Logo -->
+                    <div
+                        class="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold">
+                        MR</div>
+                    <div>
+                        <!-- Name adjusted for dark background -->
+                        <h1 class="text-xl font-semibold text-indigo-400">Matt Robinson</h1>
+                        <!-- Subtitle text color adjusted -->
+                        <p class="text-sm text-gray-300">Web Developer • UX/UI Designer • Digital Marketer</p>
+                    </div>
+                </div>
+                <nav class="flex gap-4 text-sm" aria-label="Main Navigation">
+                    <!-- Nav Links color adjusted -->
+                    <a href="#projects" class="hover:underline text-indigo-400 p-2 rounded-md">Projects</a>
+                    <a href="#skills" class="hover:underline text-indigo-400 p-2 rounded-md">Skills</a>
+                    <a href="#about" class="hover:underline text-indigo-400 p-2 rounded-md">About</a>
+                    <a href="#contact" class="hover:underline text-indigo-400 p-2 rounded-md">Contact</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <main class="max-w-6xl mx-auto px-6 py-12">
+
+            <!-- Hero Section -->
+            <section class="grid md:grid-cols-2 gap-8 items-center reveal">
+                <div>
+                    <!-- New Typed.js Content Structure -->
+                    <div class="mb-4">
+                        <h3 class="text-2xl font-semibold text-gray-300">Hello, It's</h3>
+                        <!-- Colored Hero Name adjusted for contrast -->
+                        <h1 class="text-6xl font-extrabold text-indigo-400 mt-1 mb-2 leading-tight">Matt Robinson</h1>
+                        <h3 class="text-3xl font-semibold text-white leading-snug">
+                            And I'm a <span class="multiple-text font-bold text-indigo-400"></span>
+                        </h3>
+                    </div>
+                    <!-- End New Typed.js Content Structure -->
+
+                    <p class="text-lg text-gray-300 mb-6">I combine web development, UX/UI design, and digital marketing
+                        to create user-centered websites and campaigns. I specialize in WordPress, SEO, content
+                        strategy, and practical marketing execution.</p>
+                    <div class="flex gap-3">
+                        <!-- Buttons remain high contrast -->
+                        <a href="#projects"
+                            class="inline-block bg-indigo-600 text-white px-5 py-2 rounded shadow hover:bg-indigo-700 transition">View
+                            projects</a>
+                        <a href="#contact"
+                            class="inline-block border border-indigo-600 text-indigo-400 px-5 py-2 rounded hover:bg-indigo-900/50 transition">Get
+                            in touch</a>
+                    </div>
+                    <ul class="mt-6 text-sm text-gray-400 space-y-1">
+                        <li>📍 Guelph, Ontario</li>
+                        <li>📧 mathurin_robinson@ymail.com</li>
+                        <li>📱 647-806-0926</li>
+                    </ul>
+                </div>
+
+                <!-- Featured Skills Card -->
+                <aside class="bg-gray-800 rounded-lg p-6 shadow-xl" aria-label="Featured Skills">
+                    <!-- Heading adjusted for contrast -->
+                    <h3 class="font-semibold mb-3 text-indigo-400">Featured skills</h3>
+                    <div class="grid grid-cols-2 gap-3 text-sm">
+                        <!-- Skill boxes adjusted for dark theme contrast -->
+                        <div class="p-3 bg-gray-700 text-gray-200 rounded">WordPress Development</div>
+                        <div class="p-3 bg-gray-700 text-gray-200 rounded">SEO & Analytics</div>
+                        <div class="p-3 bg-gray-700 text-gray-200 rounded">Adobe Creative Suite</div>
+                        <div class="p-3 bg-gray-700 text-gray-200 rounded">Google Ads</div>
+                        <div class="p-3 bg-gray-700 text-gray-200 rounded">HTML / CSS / JavaScript</div>
+                        <div class="p-3 bg-gray-700 text-gray-200 rounded">Figma & Prototyping</div>
+                        <div class="p-3 bg-gray-700 text-gray-200 rounded">Cybersecurity (Certified)</div>
+                        <div class="p-3 bg-gray-700 text-gray-200 rounded">Google Digital Marketing & E-commerce</div>
+                    </div>
+                </aside>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="mt-16 bg-gray-800 rounded-lg p-6 shadow-xl reveal">
+                <!-- Heading adjusted for contrast -->
+                <h3 class="text-2xl font-bold mb-3 text-indigo-400">About me</h3>
+                <!-- Text colors adjusted -->
+                <p class="text-lg text-gray-300">
+                    I am a versatile Web Developer and Digital Strategist focused on building accessible,
+                    high-performing digital experiences for small businesses and nonprofits. My approach is unique,
+                    combining technical proficiency in development and design with a strong foundation in human-centered
+                    analysis, stemming from a previous degree in Kinesiology from Ryerson University.
+                </p>
+                <!-- Text colors adjusted -->
+                <p class="text-lg text-gray-300 mt-3">
+                    I hold an Advanced Diploma in IT Innovation and Design from Conestoga College, and I specialize in
+                    full-spectrum project leadership: from UX/UI prototyping (Figma) and WordPress development to SEO
+                    optimization and launching effective Google Ads campaigns. I thrive in environments where
+                    problem-solving and quality communication are key to delivering exceptional results.
+                </p>
+                <!-- List colors adjusted -->
+                <ul class="mt-4 text-sm text-gray-400 space-y-1">
+                    <li>• Dual Educational Background: IT Innovation & Design (Advanced Diploma) and Kinesiology (BSc).
+                    </li>
+                    <li>• Certifications: Google Digital Marketing & E-commerce, Google Ads, Email Marketing, Marketing
+                        Analytics.</li>
+                    <li>• Core Values: Strong communication, team leadership (husband and father of four), and attention
+                        to detail.</li>
+                </ul>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="mt-16">
+                <!-- Heading adjusted for contrast -->
+                <h3 class="text-2xl font-bold mb-4 text-indigo-400">Selected projects</h3>
+                <!-- Text color adjusted -->
+                <p class="text-sm text-gray-400 mb-6">A selection of live sites I designed, developed, and optimized.
+                </p>
+
+                <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+                    <!-- Project Card 1 (Background changed) -->
+                    <article
+                        class="transform transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl bg-gray-800 rounded-lg shadow-xl overflow-hidden">
+                        <a href="https://www.mothersrefreshedfoundation.com/" target="_blank" rel="noreferrer"
+                            class="block">
+                            <!-- Placeholder image paths are fine for now, assuming actual images would load -->
+                            <img src="Images/MRF.png" alt="Preview of Mothers Refreshed Foundation"
+                                class="w-full h-auto object-cover" />
+                            <div class="p-4">
+                                <h4 class="font-semibold text-lg text-white">Mothers Refreshed Foundation</h4>
+                                <p class="text-xs text-gray-400 mt-1">WordPress site focused on accessibility and
+                                    community outreach.</p>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Project Card 2 (Background changed) -->
+                    <article
+                        class="transform transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl bg-gray-800 rounded-lg shadow-xl overflow-hidden">
+                        <a href="https://www.wumcanada.com/" target="_blank" rel="noreferrer" class="block">
+                            <img src="Images/WUM.png" alt="Preview of WUM Canada" class="w-full h-auto object-cover" />
+                            <div class="p-4">
+                                <h4 class="font-semibold text-lg text-white">WUM Canada</h4>
+                                <p class="text-xs text-gray-400 mt-1">Custom content layout and responsive design for
+                                    nonprofit.</p>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Project Card 3 (Background changed) -->
+                    <article
+                        class="transform transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl bg-gray-800 rounded-lg shadow-xl overflow-hidden">
+                        <a href="https://www.bethanyfosterrmt.com/" target="_blank" rel="noreferrer" class="block">
+                            <img src="Images/BMT.png" alt="Preview of Bethany Foster RMT"
+                                class="w-full h-auto object-cover" />
+                            <div class="p-4">
+                                <h4 class="font-semibold text-lg text-white">Bethany Foster RMT</h4>
+                                <p class="text-xs text-gray-400 mt-1">SEO-focused site build and local search
+                                    optimization.</p>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Project Card 4 (Background changed) -->
+                    <article
+                        class="transform transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl bg-gray-800 rounded-lg shadow-xl overflow-hidden">
+                        <a href="https://fwdmarch.com/" target="_blank" rel="noreferrer" class="block">
+                            <img src="Images/HH.png" alt="Preview of FWD March" class="w-full h-auto object-cover" />
+                            <div class="p-4">
+                                <h4 class="font-semibold text-lg text-white">FWD March</h4>
+                                <p class="text-xs text-gray-400 mt-1">Event site with clear calls-to-action and
+                                    registration flow.</p>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Project Card 5 (Background changed) -->
+                    <article
+                        class="transform transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl bg-gray-800 rounded-lg shadow-xl overflow-hidden">
+                        <a href="https://renewedfamilyservices.com/" target="_blank" rel="noreferrer" class="block">
+                            <img src="Images/RFS.png" alt="Preview of Renewed Family Services"
+                                class="w-full h-auto object-cover" />
+                            <div class="p-4">
+                                <h4 class="font-semibold text-lg text-white">Renewed Family Services</h4>
+                                <p class="text-xs text-gray-400 mt-1">Responsive WordPress build and content strategy.
+                                </p>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Project Card 6 (Background changed) -->
+                    <article
+                        class="transform transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl bg-gray-800 rounded-lg shadow-xl overflow-hidden">
+                        <a href="https://isaiahbedwardhamilton.com/" target="_blank" rel="noreferrer" class="block">
+                            <img src="Images/Program.png" alt="Preview of Isaiah Bedward-Hamilton Artist Site"
+                                class="w-full h-auto object-cover" />
+                            <div class="p-4">
+                                <h4 class="font-semibold text-lg text-white">Isaiah Bedward-Hamilton</h4>
+                                <p class="text-xs text-gray-400 mt-1">Artist site with event program and media
+                                    integration.</p>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Project Card 7 (Background changed) -->
+                    <article
+                        class="transform transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl bg-gray-800 rounded-lg shadow-xl overflow-hidden">
+                        <a href="https://mathurin93.github.io/Isaiahs-Program/" target="_blank" rel="noreferrer"
+                            class="block">
+                            <img src="Images/IBH.png" alt="Preview of Isaiah's Program (GitHub)"
+                                class="w-full h-auto object-cover" />
+                            <div class="p-4">
+                                <h4 class="font-semibold text-lg text-white">Isaiah's Program (GitHub)</h4>
+                                <p class="text-xs text-gray-400 mt-1">Static site prototype and interactive program
+                                    schedule.</p>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Project Card 8 (Background changed) -->
+                    <article
+                        class="transform transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl bg-gray-800 rounded-lg shadow-xl overflow-hidden">
+                        <a href="https://cogsabbath.org/" target="_blank" rel="noreferrer" class="block">
+                            <img src="Images/COG.png" alt="Preview of Church of God Sabbath Keeping"
+                                class="w-full h-auto object-cover" />
+                            <div class="p-4">
+                                <h4 class="font-semibold text-lg text-white">Church of God Sabbath Keeping</h4>
+                                <p class="text-xs text-gray-400 mt-1">Full website redesign and improved user
+                                    experience.</p>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Project Card 9 (Background changed) -->
+                    <article
+                        class="transform transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl bg-gray-800 rounded-lg shadow-xl overflow-hidden">
+                        <a href="https://www.bonamics.org/" target="_blank" rel="noreferrer" class="block">
+                            <img src="Images/BOM.png" alt="Preview of Bonamics" class="w-full h-auto object-cover" />
+                            <div class="p-4">
+                                <h4 class="font-semibold text-lg text-white">Bonamics</h4>
+                                <p class="text-xs text-gray-400 mt-1">Modern website build with responsive layout and
+                                    optimized content.</p>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Links Section -->
+            <section class="mt-10 reveal">
+                <!-- Background changed to dark gray -->
+                <div class="bg-gray-800 rounded-lg p-6 shadow-xl">
+                    <!-- Heading adjusted for contrast -->
+                    <h4 class="text-xl font-semibold mb-3 text-indigo-400">More work & design files</h4>
+                    <!-- Links text color adjusted -->
+                    <ul class="text-sm text-gray-300 space-y-2">
+                        <li><a href="https://github.com/mathurin93" target="_blank" rel="noreferrer"
+                                class="hover:text-indigo-400 transition-colors">• GitHub Portfolio — Full code
+                                repositories</a></li>
+                        <li><a href="https://www.figma.com/@mathurinrobinso" target="_blank" rel="noreferrer"
+                                class="hover:text-indigo-400 transition-colors">• Figma Portfolio — UI/UX design
+                                projects</a></li>
+                    </ul>
+                </div>
+            </section>
+
+
+            <!-- Skills Section -->
+            <section id="skills" class="mt-12 grid md:grid-cols-2 gap-6 reveal">
+                <!-- Background changed to dark gray -->
+                <div class="bg-gray-800 rounded-lg p-6 shadow-xl">
+                    <!-- Heading adjusted for contrast -->
+                    <h4 class="font-semibold mb-3 text-indigo-400">Technical Skills</h4>
+                    <!-- List text color adjusted -->
+                    <ul class="text-sm text-gray-300 space-y-2">
+                        <li>WordPress & CMS management</li>
+                        <li>HTML, CSS, JavaScript</li>
+                        <li>SEO & Google Analytics</li>
+                        <li>Google Ads & Email Marketing</li>
+                        <li>Adobe InDesign, Illustrator, Photoshop</li>
+                    </ul>
+                </div>
+
+                <!-- Background changed to dark gray -->
+                <div class="bg-gray-800 rounded-lg p-6 shadow-xl">
+                    <!-- Heading adjusted for contrast -->
+                    <h4 class="font-semibold mb-3 text-indigo-400">Personal Skills</h4>
+                    <!-- List text color adjusted -->
+                    <ul class="text-sm text-gray-300 space-y-2">
+                        <li>Communication & client relations</li>
+                        <li>Project coordination & time management</li>
+                        <li>Attention to detail & quality assurance</li>
+                        <li>Creative problem-solving</li>
+                        <li>Workshop facilitation & mentoring youth</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="mt-12 bg-gray-800 rounded-lg p-6 shadow-xl mb-12 reveal">
+                <!-- Heading adjusted for contrast -->
+                <h4 class="text-2xl font-bold mb-3 text-indigo-400">Contact</h4>
+                <!-- Text color adjusted -->
+                <p class="text-lg text-gray-300 mb-4">Interested in working together or want to see more? Reach out — I
+                    reply
+                    quickly.</p>
+
+                <div class="space-y-4">
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <!-- Label color adjusted -->
+                            <p class="text-sm text-gray-400">Email</p>
+                            <!-- Link color adjusted -->
+                            <a href="mailto:mathurin_robinson@ymail.com"
+                                class="text-indigo-400 hover:underline font-medium">mathurin_robinson@ymail.com</a>
+                        </div>
+                        <div>
+                            <!-- Label color adjusted -->
+                            <p class="text-sm text-gray-400">Phone</p>
+                            <!-- Link color adjusted -->
+                            <a href="tel:+16478060926"
+                                class="text-indigo-400 hover:underline font-medium">647-806-0926</a>
+                        </div>
+                    </div>
+                    <!-- LinkedIn Profile -->
+                    <div class="pt-2">
+                        <!-- Label color adjusted -->
+                        <p class="text-sm text-gray-400">Professional Profile</p>
+                        <!-- Link color adjusted -->
+                        <a href="https://www.linkedin.com/in/matt-robinson-31b9b3217/" target="_blank" rel="noreferrer"
+                            class="text-indigo-400 hover:underline flex items-center gap-2 font-medium">
+                            <!-- Icon color adjusted for dark mode contrast -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="text-indigo-400">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                            LinkedIn Profile
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    <!-- Button remains high contrast -->
+                    <a href="Matt Robinson Resume.pdf" download
+                        class="inline-block bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition shadow-md">Download
+                        Resume (PDF)</a>
+                </div>
+            </section>
+        </main>
+
+        <!-- FOOTER -->
+        <!-- Background and border changed for dark theme -->
+        <footer class="bg-gray-800 border-t border-gray-700 py-6">
+            <div class="max-w-6xl mx-auto px-6 text-sm text-gray-400 text-center">© <span id="current-year"></span> Matt
+                Robinson — Web Development & Digital Marketing</div>
+        </footer>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- 1. Initialize Typed.js ---
+            const typedElement = document.querySelector('.multiple-text');
+            if (typedElement && window.Typed) {
+                new window.Typed(typedElement, {
+                    strings: ['Web Developer', 'Graphic Designer', 'Game Designer', 'Mobile Designer', 'SQL Developer', 'Digital Marketer'],
+                    typeSpeed: 100,
+                    backSpeed: 100,
+                    backDelay: 1000,
+                    loop: true,
+                });
+            }
+
+            // --- 2. Scroll Reveal Logic ---
+            const revealElements = document.querySelectorAll('.reveal');
+
+            const checkVisibility = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Stop observing once visible to optimize performance
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+
+            // Intersection Observer watches sections as they come into the viewport
+            const observer = new IntersectionObserver(checkVisibility, { threshold: 0.12 });
+
+            revealElements.forEach(el => observer.observe(el));
+
+            // --- 3. Footer Year Update ---
+            const yearSpan = document.getElementById('current-year');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
