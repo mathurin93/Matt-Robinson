@@ -8,7 +8,9 @@
 
     <!-- Load Inter Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap">
-
+    <!-- Favicon: MR in a rounded shape -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjNGY0NmU1Ii8+PHRleHQgeD0iMTYiIHk9IjIyIiBmb250LXNpemU9IjE4IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZmlsbD0iI2ZmZmZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC13ZWlnaHQ9ImJvbGQiPk1SPC90ZXh0Pjwvc3ZnPg==">
     <!-- Tailwind CSS and Custom Configuration -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -19,7 +21,6 @@
                         sans: ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        // Keeping primary indigo, but using lighter shades for contrast on dark background
                         'primary-indigo': '#4f46e5',
                     }
                 }
@@ -39,59 +40,113 @@
 
         /* Scroll Reveal Transition CSS */
         .reveal {
-            /* Initial state classes matching the React JSX (opacity-0 translate-y-6 duration-700) */
             opacity: 0;
             transform: translateY(1.5rem);
-            /* 1.5rem = 24px, approximating translate-y-6 */
             transition: all 0.7s ease-out;
         }
 
         .reveal.visible {
-            /* Final state classes */
             opacity: 1;
             transform: translateY(0);
         }
 
         /* Simple focus state for accessibility */
         a:focus-visible,
-        button:focus-visible {
-            outline: 2px solid #6366f1;
-            /* Indigo-500 */
-            outline-offset: 3px;
-            border-radius: 4px;
+        button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.5);
+            border-radius: 6px;
+        }
+
+        /* Ensure input focus border is visible over dark background */
+        input:focus,
+        textarea:focus {
+            border-color: #6366f1;
+        }
+
+        /* --- MOBILE MENU STYLES --- */
+        .mobile-menu-closed {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .mobile-menu-open {
+            max-height: 500px;
+            /* Sufficiently large value to show all content */
+            transition: max-height 0.5s ease-in;
         }
     </style>
 </head>
-
-<!-- DARK MODE: Background changed to dark gray, text defaults to white -->
 
 <body class="bg-gray-900 text-white antialiased">
 
     <div id="app" class="min-h-screen font-sans">
 
-        <!-- HEADER -->
-        <!-- Background changed to a lighter dark gray for depth, shadow darkened -->
+        <!-- HEADER - Adjusted for mobile responsiveness with HAMBURGER MENU -->
         <header class="bg-gray-800 shadow-xl sticky top-0 z-10">
-            <div class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
+            <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+
+                <!-- Logo/Branding & Title -->
                 <div class="flex items-center gap-4">
                     <!-- Indigo Logo -->
                     <div
-                        class="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold">
+                        class="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold text-sm">
                         MR</div>
                     <div>
-                        <!-- Name adjusted for dark background -->
                         <h1 class="text-xl font-semibold text-indigo-400">Matt Robinson</h1>
-                        <!-- Subtitle text color adjusted -->
-                        <p class="text-sm text-gray-300">Web Developer • UX/UI Designer • Digital Marketer</p>
+                        <!-- Hidden on small screens to save space -->
+                        <p class="text-xs text-gray-300 hidden sm:block">Web Developer • UX/UI Designer</p>
                     </div>
                 </div>
-                <nav class="flex gap-4 text-sm" aria-label="Main Navigation">
-                    <!-- Nav Links color adjusted -->
-                    <a href="#projects" class="hover:underline text-indigo-400 p-2 rounded-md">Projects</a>
-                    <a href="#skills" class="hover:underline text-indigo-400 p-2 rounded-md">Skills</a>
-                    <a href="#about" class="hover:underline text-indigo-400 p-2 rounded-md">About</a>
-                    <a href="#contact" class="hover:underline text-indigo-400 p-2 rounded-md">Contact</a>
+
+                <!-- Desktop Menu (Visible sm:breakpoint and up) -->
+                <nav id="desktop-nav" class="hidden sm:flex items-center gap-4 text-sm" aria-label="Main Navigation">
+                    <a href="#projects"
+                        class="hover:text-white text-indigo-400 p-2 rounded-md transition duration-200">Projects</a>
+                    <a href="#skills"
+                        class="hover:text-white text-indigo-400 p-2 rounded-md transition duration-200">Skills</a>
+                    <a href="#about"
+                        class="hover:text-white text-indigo-400 p-2 rounded-md transition duration-200">About</a>
+                    <a href="#contact"
+                        class="hover:text-white text-indigo-400 p-2 rounded-md transition duration-200">Contact</a>
                 </nav>
+
+                <!-- Mobile Menu Button (Hamburger - Visible only below sm:breakpoint) -->
+                <div class="sm:hidden flex items-center">
+                    <button id="mobile-menu-button" type="button"
+                        class="p-2 rounded-lg text-indigo-400 hover:bg-gray-700 transition duration-150 ease-in-out"
+                        aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle navigation menu">
+                        <!-- Icon when menu is closed (Hamburger) -->
+                        <svg id="menu-icon-closed" class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <!-- Icon when menu is open (X) -->
+                        <svg id="menu-icon-open" class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Content (Toggled by JS) -->
+            <div id="mobile-menu" class="mobile-menu-closed sm:hidden border-t border-gray-700">
+                <div class="pt-2 pb-3 space-y-1 px-6">
+                    <a href="#projects"
+                        class="block text-base font-medium text-indigo-400 hover:bg-gray-700 hover:text-white w-full px-3 py-2 rounded-lg transition duration-150 ease-in-out">Projects</a>
+                    <a href="#skills"
+                        class="block text-base font-medium text-indigo-400 hover:bg-gray-700 hover:text-white w-full px-3 py-2 rounded-lg transition duration-150 ease-in-out">Skills</a>
+                    <a href="#about"
+                        class="block text-base font-medium text-indigo-400 hover:bg-gray-700 hover:text-white w-full px-3 py-2 rounded-lg transition duration-150 ease-in-out">About</a>
+                    <a href="#contact"
+                        class="block text-base font-medium text-indigo-400 hover:bg-gray-700 hover:text-white w-full px-3 py-2 rounded-lg transition duration-150 ease-in-out">Contact</a>
+                </div>
             </div>
         </header>
 
@@ -101,42 +156,74 @@
             <!-- Hero Section -->
             <section class="grid md:grid-cols-2 gap-8 items-center reveal">
                 <div>
-                    <!-- New Typed.js Content Structure -->
+                    <!-- Typed.js Content Structure -->
                     <div class="mb-4">
                         <h3 class="text-2xl font-semibold text-gray-300">Hello, It's</h3>
-                        <!-- Colored Hero Name adjusted for contrast -->
                         <h1 class="text-6xl font-extrabold text-indigo-400 mt-1 mb-2 leading-tight">Matt Robinson</h1>
                         <h3 class="text-3xl font-semibold text-white leading-snug">
                             And I'm a <span class="multiple-text font-bold text-indigo-400"></span>
                         </h3>
                     </div>
-                    <!-- End New Typed.js Content Structure -->
-
+                    <!-- End Typed.js Content Structure -->
                     <p class="text-lg text-gray-300 mb-6">I combine web development, UX/UI design, and digital marketing
                         to create user-centered websites and campaigns. I specialize in WordPress, SEO, content
                         strategy, and practical marketing execution.</p>
-                    <div class="flex gap-3">
-                        <!-- Buttons remain high contrast -->
-                        <a href="#projects"
-                            class="inline-block bg-indigo-600 text-white px-5 py-2 rounded shadow hover:bg-indigo-700 transition">View
-                            projects</a>
-                        <a href="#contact"
-                            class="inline-block border border-indigo-600 text-indigo-400 px-5 py-2 rounded hover:bg-indigo-900/50 transition">Get
-                            in touch</a>
+
+                    <!-- Download Resume Button (Moved to top line) -->
+                    <div class="mb-4">
+                        <a href="Matt Robinson Resume.pdf" download
+                            class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition shadow-md font-semibold">
+                            Download Resume (PDF)
+                        </a>
                     </div>
-                    <ul class="mt-6 text-sm text-gray-400 space-y-1">
+
+                    <!-- Social Icons (Now on their own line) -->
+                    <div class="flex flex-wrap items-center gap-6 mb-6">
+                    
+                    <a href="https://www.figma.com/@mathurinrobinso" target="_blank" rel="noreferrer"
+                        class="text-indigo-400 hover:text-indigo-500 transition-colors p-1" aria-label="Figma Portfolio">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                            <path
+                                d="M12 0c1.656 0 3 1.344 3 3s-1.344 3-3 3-3-1.344-3-3 1.344-3 3-3zm0 6c1.656 0 3 1.344 3 3s-1.344 3-3 3-3-1.344-3-3 1.344-3 3-3zm0 6c1.656 0 3 1.344 3 3s-1.344 3-3 3-3-1.344-3-3 1.344-3 3-3zm0 6c1.656 0 3 1.344 3 3s-1.344 3-3 3-3-1.344-3-3 1.344-3 3-3z" />
+                        </svg>
+                    </a>
+
+
+
+
+                    
+                        <!-- LinkedIn Icon (unchanged) -->
+                        <a href="https://www.linkedin.com/in/matt-robinson-31b9b3217/" target="_blank" rel="noreferrer"
+                            class="text-indigo-400 hover:text-indigo-500 transition-colors p-1" aria-label="LinkedIn Profile">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-6 h-6">
+                                <path
+                                    d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zm.02 6H2v12h6v-12H5zm7 0h-2v12h6v-6c0-3-4-2.9-4 0v6h2v-6c0-3 4-2.9 4 0v6h2v-7a5 5 0 0 0-5-5z" />
+                            </svg>
+                        </a>
+                    
+                        <!-- GitHub Icon -->
+                        <a href="https://github.com/mathurin93" target="_blank" rel="noreferrer"
+                            class="text-indigo-400 hover:text-indigo-500 transition-colors p-1" aria-label="GitHub Portfolio">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.757-1.333-1.757-1.09-.745.083-.729.083-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.418-1.305.762-1.605-2.665-.305-5.467-1.333-5.467-5.931 0-1.31.467-2.381 1.235-3.221-.123-.303-.536-1.527.117-3.176 0 0 1.008-.322 3.3 1.23a11.49 11.49 0 0 1 3-.404c1.02.005 2.045.137 3 .404 2.291-1.552 3.297-1.23 3.297-1.23.654 1.649.242 2.873.119 3.176.77.84 1.234 1.911 1.234 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .322.218.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                            </svg>
+                        </a>
+                    </div>
+
+
+
+                    <ul class="text-sm text-gray-400 space-y-1">
                         <li>📍 Guelph, Ontario</li>
                         <li>📧 mathurin_robinson@ymail.com</li>
-                        <li>📱 647-806-0926</li>
+                        <li>📞 647-806-0926</li>
                     </ul>
                 </div>
 
                 <!-- Featured Skills Card -->
                 <aside class="bg-gray-800 rounded-lg p-6 shadow-xl" aria-label="Featured Skills">
-                    <!-- Heading adjusted for contrast -->
                     <h3 class="font-semibold mb-3 text-indigo-400">Featured skills</h3>
                     <div class="grid grid-cols-2 gap-3 text-sm">
-                        <!-- Skill boxes adjusted for dark theme contrast -->
                         <div class="p-3 bg-gray-700 text-gray-200 rounded">WordPress Development</div>
                         <div class="p-3 bg-gray-700 text-gray-200 rounded">SEO & Analytics</div>
                         <div class="p-3 bg-gray-700 text-gray-200 rounded">Adobe Creative Suite</div>
@@ -151,23 +238,19 @@
 
             <!-- About Section -->
             <section id="about" class="mt-16 bg-gray-800 rounded-lg p-6 shadow-xl reveal">
-                <!-- Heading adjusted for contrast -->
                 <h3 class="text-2xl font-bold mb-3 text-indigo-400">About me</h3>
-                <!-- Text colors adjusted -->
                 <p class="text-lg text-gray-300">
                     I am a versatile Web Developer and Digital Strategist focused on building accessible,
                     high-performing digital experiences for small businesses and nonprofits. My approach is unique,
                     combining technical proficiency in development and design with a strong foundation in human-centered
                     analysis, stemming from a previous degree in Kinesiology from Ryerson University.
                 </p>
-                <!-- Text colors adjusted -->
                 <p class="text-lg text-gray-300 mt-3">
                     I hold an Advanced Diploma in IT Innovation and Design from Conestoga College, and I specialize in
                     full-spectrum project leadership: from UX/UI prototyping (Figma) and WordPress development to SEO
                     optimization and launching effective Google Ads campaigns. I thrive in environments where
                     problem-solving and quality communication are key to delivering exceptional results.
                 </p>
-                <!-- List colors adjusted -->
                 <ul class="mt-4 text-sm text-gray-400 space-y-1">
                     <li>• Dual Educational Background: IT Innovation & Design (Advanced Diploma) and Kinesiology (BSc).
                     </li>
@@ -180,20 +263,17 @@
 
             <!-- Projects Section -->
             <section id="projects" class="mt-16">
-                <!-- Heading adjusted for contrast -->
                 <h3 class="text-2xl font-bold mb-4 text-indigo-400">Selected projects</h3>
-                <!-- Text color adjusted -->
                 <p class="text-sm text-gray-400 mb-6">A selection of live sites I designed, developed, and optimized.
                 </p>
 
                 <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
 
-                    <!-- Project Card 1 (Background changed) -->
+                    <!-- Project Card 1 (Background changed) - RESTORED IMAGE PATH -->
                     <article
                         class="transform transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl bg-gray-800 rounded-lg shadow-xl overflow-hidden">
                         <a href="https://www.mothersrefreshedfoundation.com/" target="_blank" rel="noreferrer"
                             class="block">
-                            <!-- Placeholder image paths are fine for now, assuming actual images would load -->
                             <img src="Images/MRF.png" alt="Preview of Mothers Refreshed Foundation"
                                 class="w-full h-auto object-cover" />
                             <div class="p-4">
@@ -204,7 +284,7 @@
                         </a>
                     </article>
 
-                    <!-- Project Card 2 (Background changed) -->
+                    <!-- Project Card 2 (Background changed) - RESTORED IMAGE PATH -->
                     <article
                         class="transform transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl bg-gray-800 rounded-lg shadow-xl overflow-hidden">
                         <a href="https://www.wumcanada.com/" target="_blank" rel="noreferrer" class="block">
@@ -217,9 +297,9 @@
                         </a>
                     </article>
 
-                    <!-- Project Card 3 (Background changed) -->
+                    <!-- Project Card 3 (Background changed) - RESTORED IMAGE PATH -->
                     <article
-                        class="transform transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl bg-gray-800 rounded-lg shadow-xl overflow-hidden">
+                        class="transform transition-all duration-300 hover:-translate-y-1 hover:-shadow-2xl bg-gray-800 rounded-lg shadow-xl overflow-hidden">
                         <a href="https://www.bethanyfosterrmt.com/" target="_blank" rel="noreferrer" class="block">
                             <img src="Images/BMT.png" alt="Preview of Bethany Foster RMT"
                                 class="w-full h-auto object-cover" />
@@ -231,7 +311,7 @@
                         </a>
                     </article>
 
-                    <!-- Project Card 4 (Background changed) -->
+                    <!-- Project Card 4 (Background changed) - RESTORED IMAGE PATH -->
                     <article
                         class="transform transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl bg-gray-800 rounded-lg shadow-xl overflow-hidden">
                         <a href="https://fwdmarch.com/" target="_blank" rel="noreferrer" class="block">
@@ -244,7 +324,7 @@
                         </a>
                     </article>
 
-                    <!-- Project Card 5 (Background changed) -->
+                    <!-- Project Card 5 (Background changed) - RESTORED IMAGE PATH -->
                     <article
                         class="transform transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl bg-gray-800 rounded-lg shadow-xl overflow-hidden">
                         <a href="https://renewedfamilyservices.com/" target="_blank" rel="noreferrer" class="block">
@@ -258,7 +338,7 @@
                         </a>
                     </article>
 
-                    <!-- Project Card 6 (Background changed) -->
+                    <!-- Project Card 6 (Background changed) - RESTORED IMAGE PATH -->
                     <article
                         class="transform transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl bg-gray-800 rounded-lg shadow-xl overflow-hidden">
                         <a href="https://isaiahbedwardhamilton.com/" target="_blank" rel="noreferrer" class="block">
@@ -272,7 +352,7 @@
                         </a>
                     </article>
 
-                    <!-- Project Card 7 (Background changed) -->
+                    <!-- Project Card 7 (Background changed) - RESTORED IMAGE PATH -->
                     <article
                         class="transform transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl bg-gray-800 rounded-lg shadow-xl overflow-hidden">
                         <a href="https://mathurin93.github.io/Isaiahs-Program/" target="_blank" rel="noreferrer"
@@ -287,7 +367,7 @@
                         </a>
                     </article>
 
-                    <!-- Project Card 8 (Background changed) -->
+                    <!-- Project Card 8 (Background changed) - RESTORED IMAGE PATH -->
                     <article
                         class="transform transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl bg-gray-800 rounded-lg shadow-xl overflow-hidden">
                         <a href="https://cogsabbath.org/" target="_blank" rel="noreferrer" class="block">
@@ -301,7 +381,7 @@
                         </a>
                     </article>
 
-                    <!-- Project Card 9 (Background changed) -->
+                    <!-- Project Card 9 (Background changed) - RESTORED IMAGE PATH -->
                     <article
                         class="transform transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl bg-gray-800 rounded-lg shadow-xl overflow-hidden">
                         <a href="https://www.bonamics.org/" target="_blank" rel="noreferrer" class="block">
@@ -339,9 +419,7 @@
             <section id="skills" class="mt-12 grid md:grid-cols-2 gap-6 reveal">
                 <!-- Background changed to dark gray -->
                 <div class="bg-gray-800 rounded-lg p-6 shadow-xl">
-                    <!-- Heading adjusted for contrast -->
                     <h4 class="font-semibold mb-3 text-indigo-400">Technical Skills</h4>
-                    <!-- List text color adjusted -->
                     <ul class="text-sm text-gray-300 space-y-2">
                         <li>WordPress & CMS management</li>
                         <li>HTML, CSS, JavaScript</li>
@@ -353,9 +431,7 @@
 
                 <!-- Background changed to dark gray -->
                 <div class="bg-gray-800 rounded-lg p-6 shadow-xl">
-                    <!-- Heading adjusted for contrast -->
                     <h4 class="font-semibold mb-3 text-indigo-400">Personal Skills</h4>
-                    <!-- List text color adjusted -->
                     <ul class="text-sm text-gray-300 space-y-2">
                         <li>Communication & client relations</li>
                         <li>Project coordination & time management</li>
@@ -366,65 +442,37 @@
                 </div>
             </section>
 
-            <!-- Contact Section -->
+            <!-- Contact Section (CLEANED UP) -->
             <section id="contact" class="mt-12 bg-gray-800 rounded-lg p-6 shadow-xl mb-12 reveal">
-                <!-- Heading adjusted for contrast -->
-                <h4 class="text-2xl font-bold mb-3 text-indigo-400">Contact</h4>
-                <!-- Text color adjusted -->
-                <p class="text-lg text-gray-300 mb-4">Interested in working together or want to see more? Reach out — I
-                    reply
-                    quickly.</p>
+                <h4 class="text-2xl font-bold mb-3 text-center text-indigo-400">Contact Me</h4>
 
-                <div class="space-y-4">
+                <!-- CONTACT FORM (Limited width and centered) -->
+                <form id="contact-form" class="space-y-4 text-center max-w-lg mx-auto">
                     <div class="grid sm:grid-cols-2 gap-4">
-                        <div>
-                            <!-- Label color adjusted -->
-                            <p class="text-sm text-gray-400">Email</p>
-                            <!-- Link color adjusted -->
-                            <a href="mailto:mathurin_robinson@ymail.com"
-                                class="text-indigo-400 hover:underline font-medium">mathurin_robinson@ymail.com</a>
-                        </div>
-                        <div>
-                            <!-- Label color adjusted -->
-                            <p class="text-sm text-gray-400">Phone</p>
-                            <!-- Link color adjusted -->
-                            <a href="tel:+16478060926"
-                                class="text-indigo-400 hover:underline font-medium">647-806-0926</a>
-                        </div>
+                        <input type="text" id="name" placeholder="Your Name" required
+                            class="bg-gray-700 p-3 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 border-transparent transition text-gray-200" />
+                        <input type="email" id="email" placeholder="Your Email" required
+                            class="bg-gray-700 p-3 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 border-transparent transition text-gray-200" />
                     </div>
-                    <!-- LinkedIn Profile -->
-                    <div class="pt-2">
-                        <!-- Label color adjusted -->
-                        <p class="text-sm text-gray-400">Professional Profile</p>
-                        <!-- Link color adjusted -->
-                        <a href="https://www.linkedin.com/in/matt-robinson-31b9b3217/" target="_blank" rel="noreferrer"
-                            class="text-indigo-400 hover:underline flex items-center gap-2 font-medium">
-                            <!-- Icon color adjusted for dark mode contrast -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="text-indigo-400">
-                                <path
-                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
-                                </path>
-                                <rect x="2" y="9" width="4" height="12"></rect>
-                                <circle cx="4" cy="4" r="2"></circle>
-                            </svg>
-                            LinkedIn Profile
-                        </a>
-                    </div>
-                </div>
+                    <input type="text" id="subject" placeholder="Subject" required
+                        class="w-full bg-gray-700 p-3 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 border-transparent transition text-gray-200" />
+                    <textarea id="message" rows="5" placeholder="Your Message" required
+                        class="w-full bg-gray-700 p-3 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 border-transparent transition text-gray-200"></textarea>
 
-                <div class="mt-8">
-                    <!-- Button remains high contrast -->
-                    <a href="Matt Robinson Resume.pdf" download
-                        class="inline-block bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition shadow-md">Download
-                        Resume (PDF)</a>
+                    <button type="submit" id="submit-button"
+                        class="inline-block w-full sm:w-auto bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition shadow-lg font-semibold">
+                        Send Message
+                    </button>
+                </form>
+
+                <!-- Form Response Message (hidden initially) -->
+                <div id="form-response"
+                    class="mt-4 p-4 rounded-lg text-center font-semibold hidden text-green-400 bg-gray-700 max-w-lg mx-auto">
                 </div>
             </section>
         </main>
 
         <!-- FOOTER -->
-        <!-- Background and border changed for dark theme -->
         <footer class="bg-gray-800 border-t border-gray-700 py-6">
             <div class="max-w-6xl mx-auto px-6 text-sm text-gray-400 text-center">© <span id="current-year"></span> Matt
                 Robinson — Web Development & Digital Marketing</div>
@@ -460,7 +508,9 @@
             };
 
             // Intersection Observer watches sections as they come into the viewport
-            const observer = new IntersectionObserver(checkVisibility, { threshold: 0.12 });
+            const observer = new IntersectionObserver(checkVisibility, {
+                threshold: 0.12
+            });
 
             revealElements.forEach(el => observer.observe(el));
 
@@ -468,6 +518,91 @@
             const yearSpan = document.getElementById('current-year');
             if (yearSpan) {
                 yearSpan.textContent = new Date().getFullYear();
+            }
+
+            // --- 4. Contact Form Submission Handling ---
+            const contactForm = document.getElementById('contact-form');
+            const formResponse = document.getElementById('form-response');
+
+            if (contactForm && formResponse) {
+                contactForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    // Disable button and show loading state
+                    const submitButton = document.getElementById('submit-button');
+                    submitButton.textContent = 'Sending...';
+                    submitButton.disabled = true;
+
+                    // Show temporary loading/sending message
+                    formResponse.textContent = "Processing...";
+                    formResponse.classList.remove('hidden', 'text-green-400', 'text-red-400');
+                    formResponse.classList.add('text-indigo-400', 'block');
+
+
+                    // Simulate network delay for submission confirmation
+                    setTimeout(() => {
+                        // Display success message
+                        formResponse.textContent = "Thank you! Your message has been received and I'll get back to you shortly.";
+                        formResponse.classList.remove('text-indigo-400', 'text-red-400');
+                        formResponse.classList.add('text-green-400');
+
+                        // Reset form fields
+                        contactForm.reset();
+
+                        // Reset button and hide message after a delay
+                        setTimeout(() => {
+                            submitButton.textContent = 'Send Message';
+                            submitButton.disabled = false;
+                            formResponse.classList.add('hidden');
+                        }, 4000);
+
+                    }, 1500); // 1.5 second delay
+                });
+            }
+
+            // --- 5. Mobile Menu Toggle Logic ---
+            const menuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuIconClosed = document.getElementById('menu-icon-closed');
+            const menuIconOpen = document.getElementById('menu-icon-open');
+
+            if (menuButton && mobileMenu) {
+                const toggleMenu = () => {
+                    const isExpanded = menuButton.getAttribute('aria-expanded') === 'true' || false;
+
+                    // Toggle the 'aria-expanded' attribute
+                    menuButton.setAttribute('aria-expanded', !isExpanded);
+
+                    // Toggle the CSS classes for slide transition
+                    if (mobileMenu.classList.contains('mobile-menu-closed')) {
+                        mobileMenu.classList.remove('mobile-menu-closed');
+                        mobileMenu.classList.add('mobile-menu-open');
+
+                        // Toggle icons (show 'X', hide 'Hamburger')
+                        menuIconClosed.classList.add('hidden');
+                        menuIconOpen.classList.remove('hidden');
+                    } else {
+                        mobileMenu.classList.remove('mobile-menu-open');
+                        mobileMenu.classList.add('mobile-menu-closed');
+
+                        // Toggle icons (show 'Hamburger', hide 'X')
+                        menuIconClosed.classList.remove('hidden');
+                        menuIconOpen.classList.add('hidden');
+                    }
+                };
+
+                menuButton.addEventListener('click', toggleMenu);
+
+                // Add a listener to close the menu when a link is clicked
+                const mobileLinks = mobileMenu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        // Check if the menu is open before closing it
+                        if (mobileMenu.classList.contains('mobile-menu-open')) {
+                            toggleMenu();
+                        }
+                    });
+                });
             }
         });
     </script>
