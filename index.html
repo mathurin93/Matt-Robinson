@@ -8,6 +8,8 @@
 
     <!-- Load Inter Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap">
+    <!-- BOXICONS CDN - NEW -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Favicon: MR in a rounded shape -->
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjNGY0NmU1Ii8+PHRleHQgeD0iMTYiIHk9IjIyIiBmb250LXNpemU9IjE4IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZmlsbD0iI2ZmZmZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC13ZWlnaHQ9ImJvbGQiPk1SPC90ZXh0Pjwvc3ZnPg==">
@@ -103,16 +105,14 @@
                 </div>
 
                 <!-- Desktop Menu (Visible sm:breakpoint and up) -->
-                <nav id="desktop-nav" class="hidden sm:flex items-center gap-4 text-sm" aria-label="Main Navigation">
-                    <a href="#projects"
-                        class="hover:text-white text-indigo-400 p-2 rounded-md transition duration-200">Projects</a>
-                    <a href="#skills"
-                        class="hover:text-white text-indigo-400 p-2 rounded-md transition duration-200">Skills</a>
-                    <a href="#about"
-                        class="hover:text-white text-indigo-400 p-2 rounded-md transition duration-200">About</a>
-                    <a href="#contact"
-                        class="hover:text-white text-indigo-400 p-2 rounded-md transition duration-200">Contact</a>
-                </nav>
+            <nav id="desktop-nav" class="hidden sm:flex items-center gap-4 text-sm" aria-label="Main Navigation">
+                <!-- NEW ORDER: About, Projects, Services, Skills, Contact -->
+                <a href="#about" class="hover:text-white text-indigo-400 p-2 rounded-md transition duration-200">About</a>
+                <a href="#projects" class="hover:text-white text-indigo-400 p-2 rounded-md transition duration-200">Projects</a>
+                <a href="#services" class="hover:text-white text-indigo-400 p-2 rounded-md transition duration-200">Services</a>
+                <a href="#skills" class="hover:text-white text-indigo-400 p-2 rounded-md transition duration-200">Skills</a>
+                <a href="#contact" class="hover:text-white text-indigo-400 p-2 rounded-md transition duration-200">Contact</a>
+            </nav>
 
                 <!-- Mobile Menu Button (Hamburger - Visible only below sm:breakpoint) -->
                 <div class="sm:hidden flex items-center">
@@ -238,7 +238,7 @@
 
             <!-- About Section -->
             <section id="about" class="mt-16 bg-gray-800 rounded-lg p-6 shadow-xl reveal">
-                <h3 class="text-2xl font-bold mb-3 text-indigo-400">About me</h3>
+                <h3 class="text-3xl font-bold mb-3 text-indigo-400">About Me</h3>
                 <p class="text-lg text-gray-300">
                     I am a versatile Web Developer and Digital Strategist focused on building accessible,
                     high-performing digital experiences for small businesses and nonprofits. My approach is unique,
@@ -263,8 +263,8 @@
 
             <!-- Projects Section -->
             <section id="projects" class="mt-16">
-                <h3 class="text-2xl font-bold mb-4 text-indigo-400">Selected projects</h3>
-                <p class="text-sm text-gray-400 mb-6">A selection of live sites I designed, developed, and optimized.
+                <h1 class="text-3xl font-bold mb-3 text-indigo-400 text-center">Lastest Projects</h1>
+                <p class="text-lg text-gray-400 mb-20 text-center">A selection of live sites I designed, developed, and optimized.
                 </p>
 
                 <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -398,41 +398,113 @@
 
             <!-- Links Section -->
             <section class="mt-10 reveal">
-                <!-- Background changed to dark gray -->
                 <div class="bg-gray-800 rounded-lg p-6 shadow-xl">
-                    <!-- Heading adjusted for contrast -->
-                    <h4 class="text-xl font-semibold mb-3 text-indigo-400">More work & design files</h4>
-                    <!-- Links text color adjusted -->
-                    <ul class="text-sm text-gray-300 space-y-2">
+                    <!-- Heading adjusted for contrast & size -->
+                    <h4 class="text-2xl font-semibold mb-4 text-indigo-400">More work & design files</h4>
+                    <ul class="text-base text-gray-300 space-y-3">
                         <li><a href="https://github.com/mathurin93" target="_blank" rel="noreferrer"
-                                class="hover:text-indigo-400 transition-colors">• GitHub Portfolio — Full code
-                                repositories</a></li>
+                                class="hover:text-indigo-400 transition-colors">• GitHub Portfolio — Full code repositories</a></li>
                         <li><a href="https://www.figma.com/@mathurinrobinso" target="_blank" rel="noreferrer"
-                                class="hover:text-indigo-400 transition-colors">• Figma Portfolio — UI/UX design
-                                projects</a></li>
+                                class="hover:text-indigo-400 transition-colors">• Figma Portfolio — UI/UX design projects</a></li>
                     </ul>
                 </div>
             </section>
 
-
+        <section id="services" class="mt-12 reveal">
+            <h2 class="text-3xl font-bold mb-8 text-indigo-400 text-center">Services</h2>
+        
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+                <!-- Service Card: Web Development (Icon Updated to bx-code-alt) -->
+                <article class="bg-gray-800 rounded-lg p-6 shadow-xl flex flex-col items-center text-center">
+                    <i class='bx bx-code-alt text-indigo-400 mb-3 text-4xl'></i>
+                    <!-- Increased from text-xl to text-2xl -->
+                    <h4 class="text-2xl font-semibold mb-2 text-white">Web Development</h4>
+                    <!-- Increased from text-sm to text-base -->
+                    <p class="text-base text-gray-400">I provide web development services, creating and improving your
+                        online presence. Specializing in responsive design, I craft visually appealing websites
+                        for seamless user experiences. From intuitive front-end interfaces to robust back-end
+                        solutions handling databases and server logic.</p>
+                </article>
+        
+                <!-- Service Card: Graphic Design (Icon Updated to bxs-paint) -->
+                <article class="bg-gray-800 rounded-lg p-6 shadow-xl flex flex-col items-center text-center">
+                    <i class='bx bxs-paint text-indigo-400 mb-3 text-4xl'></i>
+                    <!-- Increased from text-xl to text-2xl -->
+                    <h4 class="text-2xl font-semibold mb-2 text-white">Graphic Design</h4>
+                    <!-- Increased from text-sm to text-base -->
+                    <p class="text-base text-gray-400">I offer comprehensive graphic design services to elevate your
+                        visual identity. As a solo designer, I specialize in creating eye-catching designs that
+                        communicate your brand effectively. From captivating logos and brand assets to engaging
+                        marketing materials, I tailor solutions to meet your specific design needs.</p>
+                </article>
+        
+                <!-- Service Card: Game Development (Icon Updated to bxs-game) -->
+                <article class="bg-gray-800 rounded-lg p-6 shadow-xl flex flex-col items-center text-center">
+                    <i class='bx bxs-game text-indigo-400 mb-3 text-4xl'></i>
+                    <!-- Increased from text-xl to text-2xl -->
+                    <h4 class="text-2xl font-semibold mb-2 text-white">Game Development</h4>
+                    <!-- Increased from text-sm to text-base -->
+                    <p class="text-base text-gray-400">I provide comprehensive game development services to elevate
+                        your gaming experience. I specialize in creating immersive and captivating games that
+                        resonate with the audience. From unique game mechanics and compelling storylines to visually
+                        stunning graphics and seamless gameplay.</p>
+                </article>
+        
+                <!-- Service Card: Mobile Development (Icon Updated to bxs-mobile) -->
+                <article class="bg-gray-800 rounded-lg p-6 shadow-xl flex flex-col items-center text-center">
+                    <i class='bx bxs-mobile text-indigo-400 mb-3 text-4xl'></i>
+                    <!-- Increased from text-xl to text-2xl -->
+                    <h4 class="text-2xl font-semibold mb-2 text-white">Mobile Development</h4>
+                    <!-- Increased from text-sm to text-base -->
+                    <p class="text-base text-gray-400">I offer comprehensive mobile design services to enhance your
+                        digital experience. As a solo designer, I specialize in creating immersive and user-friendly
+                        mobile applications that resonate with your audience. From intuitive user interfaces and
+                        engaging user experiences to visually appealing graphics and seamless functionality.</p>
+                </article>
+        
+                <!-- Service Card: SQL Development (Icon Updated to bxs-data) -->
+                <article class="bg-gray-800 rounded-lg p-6 shadow-xl flex flex-col items-center text-center">
+                    <i class='bx bxs-data text-indigo-400 mb-3 text-4xl'></i>
+                    <!-- Increased from text-xl to text-2xl -->
+                    <h4 class="text-2xl font-semibold mb-2 text-white">SQL Development</h4>
+                    <!-- Increased from text-sm to text-base -->
+                    <p class="text-base text-gray-400">I offer comprehensive SQL development services to optimize your
+                        data management. As a solo SQL developer, I specialize in designing and maintaining robust
+                        databases that enhance efficiency. From crafting efficient queries and database
+                        optimization to ensuring seamless data integration.</p>
+                </article>
+        
+                <!-- Service Card: Digital Marketing (Icon Updated to bx-bar-chart-alt) -->
+                <article class="bg-gray-800 rounded-lg p-6 shadow-xl flex flex-col items-center text-center">
+                    <i class='bx bx-bar-chart-alt text-indigo-400 mb-3 text-4xl'></i>
+                    <!-- Increased from text-xl to text-2xl -->
+                    <h4 class="text-2xl font-semibold mb-2 text-white">Digital Marketing</h4>
+                    <!-- Increased from text-sm to text-base -->
+                    <p class="text-base text-gray-400">I provide dynamic digital marketing services to enhance your
+                        online reach. Specializing in solo-driven strategies, I craft effective campaigns across
+                        various platforms to boost your brand visibility and engagement. From targeted social media
+                        campaigns and SEO optimization to compelling content creation.</p>
+                </article>
+            </div>
+        </section>
+            
             <!-- Skills Section -->
             <section id="skills" class="mt-12 grid md:grid-cols-2 gap-6 reveal">
-                <!-- Background changed to dark gray -->
                 <div class="bg-gray-800 rounded-lg p-6 shadow-xl">
-                    <h4 class="font-semibold mb-3 text-indigo-400">Technical Skills</h4>
-                    <ul class="text-sm text-gray-300 space-y-2">
-                        <li>WordPress & CMS management</li>
-                        <li>HTML, CSS, JavaScript</li>
+                    <h4 class="text-2xl font-semibold mb-4 text-indigo-400">Technical Skills</h4>
+                    <ul class="text-base text-gray-300 space-y-2">
+                        <li>WordPress, Wix & CMS management</li>
+                        <li>HTML, CSS, JavaScript, React</li>
                         <li>SEO & Google Analytics</li>
                         <li>Google Ads & Email Marketing</li>
-                        <li>Adobe InDesign, Illustrator, Photoshop</li>
+                        <li>Canva, Illustrator, Photoshop</li>
                     </ul>
                 </div>
-
-                <!-- Background changed to dark gray -->
+            
                 <div class="bg-gray-800 rounded-lg p-6 shadow-xl">
-                    <h4 class="font-semibold mb-3 text-indigo-400">Personal Skills</h4>
-                    <ul class="text-sm text-gray-300 space-y-2">
+                    <h4 class="text-2xl font-semibold mb-4 text-indigo-400">Personal Skills</h4>
+                    <ul class="text-base text-gray-300 space-y-2">
                         <li>Communication & client relations</li>
                         <li>Project coordination & time management</li>
                         <li>Attention to detail & quality assurance</li>
@@ -441,10 +513,10 @@
                     </ul>
                 </div>
             </section>
-
-            <!-- Contact Section (CLEANED UP) -->
+            
+            <!-- Contact Section -->
             <section id="contact" class="mt-12 bg-gray-800 rounded-lg p-6 shadow-xl mb-12 reveal">
-                <h4 class="text-2xl font-bold mb-3 text-center text-indigo-400">Contact Me</h4>
+                <h4 class="text-3xl font-bold mb-4 text-center text-indigo-400">Contact Me</h4>
 
                 <!-- CONTACT FORM (Limited width and centered) -->
                 <form id="contact-form" class="space-y-4 text-center max-w-lg mx-auto">
